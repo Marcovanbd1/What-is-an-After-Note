@@ -22,6 +22,36 @@
     padding: 0 0 4rem;
   }
 
+  /* SCROLLSITE BAR */
+  .scrollsite-bar {
+    background: #f7f7f5;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 0.6rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .scrollsite-bar-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #bbb;
+    white-space: nowrap;
+  }
+
+  .scrollsite-bar-divider {
+    height: 1px;
+    flex: 1;
+    background: #e0e0e0;
+  }
+
+  .scrollsite-bar-hint {
+    font-size: 10px;
+    color: #bbb;
+    white-space: nowrap;
+  }
+
   /* HERO */
   .scroll-hero {
     padding: 3rem 2rem 2.5rem;
@@ -606,9 +636,16 @@
 
 <div class="scroll-wrap">
 
+  <!-- SCROLLSITE BAR -->
+  <div class="scrollsite-bar">
+    <span class="scrollsite-bar-label">Scrollsite</span>
+    <div class="scrollsite-bar-divider"></div>
+    <span class="scrollsite-bar-hint">A long-form explainer. Read from top to bottom. Take your time.</span>
+  </div>
+
   <!-- HERO -->
   <div class="scroll-hero">
-    <p class="scroll-eyebrow">Neighbourhood CoLab CIC</p>
+    <p class="scroll-eyebrow">Neighbourhood CoLab CIC — a community interest company building inside the NHS</p>
     <h1 class="scroll-hero-title">At the end of every consultation, something is dispatched to the patient. Nobody designed it for the patient.</h1>
     <p class="scroll-hero-body">A printed sheet. An SMS. A letter written for the record. The clinical moment is over and the system sends what the system has always sent. The After Note is a different answer to that moment, built from first principles, shaped entirely around one question: what does this specific person need to understand and do before they leave the building?</p>
   </div>
@@ -630,7 +667,7 @@
       </div>
       <div class="problem-item penny">
         <p class="problem-item-label">For patients</p>
-        <p class="problem-item-text">The After Note is free to receive and free forever. The commercial model is a penny royalty: every time the CoLab Lens generates an After Note, one penny goes to Neighbourhood CoLab CIC. The penny comes from the AVT supplier. The patient never pays and never pays in kind. The patient is not the product. The penny is.</p>
+        <p class="problem-item-text">Free to download. Free to use. Free forever. The patient is never the product.</p>
       </div>
     </div>
   </div>
@@ -660,6 +697,11 @@
       </div>
       <div class="workflow-step">
         <p class="workflow-step-num">04</p>
+        <p class="workflow-step-name">Agent confirms delivery</p>
+        <p class="workflow-step-desc">An agent keeps working until the patient has their After Note. It doesn't stop until delivery is confirmed.</p>
+      </div>
+      <div class="workflow-step">
+        <p class="workflow-step-num">05</p>
         <p class="workflow-step-name">Patient leaves</p>
         <p class="workflow-step-desc">They already have what they need in their pocket.</p>
       </div>
