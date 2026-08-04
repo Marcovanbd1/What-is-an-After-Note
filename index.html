@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Worked Example — After Note</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -9,213 +10,286 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
     font-family: 'DM Sans', sans-serif;
     background: #ffffff;
     color: #1a1a1a;
     line-height: 1.5;
   }
 
-  /* Fixed-size "canvas" that gets scaled to fit the viewport, so the
-     layout never scrolls no matter how small the browser window is. */
-  .page {
-    width: 1240px;
-    height: 860px;
-    padding: 28px 44px 20px;
+  /* ---------- FIRST SCREEN: comparison, fits one viewport ---------- */
+  .hero {
+    min-height: 100vh;
+    padding: 40px 56px 32px;
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform-origin: center center;
   }
 
   .scroll-section-label {
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #999;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .comparison-intro {
-    font-size: 13.5px;
-    line-height: 1.55;
+    font-size: 15px;
+    line-height: 1.6;
     color: #555;
-    max-width: 900px;
-    margin-bottom: 14px;
+    max-width: 980px;
+    margin-bottom: 22px;
   }
 
   .comparison-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    flex: 1;
+    gap: 60px;
+    flex: 1 1 auto;
     min-height: 0;
   }
 
   .col-label {
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #999;
-    margin-bottom: 10px;
-    padding-bottom: 8px;
+    margin-bottom: 13px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #e8e8e8;
   }
 
-  .note-block { margin-bottom: 9px; }
+  .note-block { margin-bottom: 10px; }
 
   .note-section-head {
-    font-size: 10.5px;
+    font-size: 11.5px;
     font-weight: 500;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #aaa;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
   }
 
   .note-text {
-    font-size: 12px;
-    line-height: 1.5;
+    font-size: 12.5px;
+    line-height: 1.48;
     color: #555;
+  }
+
+  .note-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .note-list li {
+    font-size: 12px;
+    line-height: 1.45;
+    color: #555;
+    margin-bottom: 3px;
+    padding-left: 11px;
+    position: relative;
+  }
+
+  .note-list li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: #bbb;
+  }
+
+  .note-list li strong {
+    color: #888;
+    font-weight: 500;
   }
 
   .after-title {
     font-family: 'Lora', serif;
-    font-size: 16.5px;
+    font-size: 21px;
     font-weight: 400;
     line-height: 1.3;
     color: #1a1a1a;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .after-intro {
-    font-size: 12px;
+    font-size: 13.5px;
     line-height: 1.55;
     color: #555;
-    margin-bottom: 9px;
+    margin-bottom: 12px;
   }
 
   .after-section-label {
-    font-size: 10.5px;
+    font-size: 11.5px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #aaa;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
   }
 
   .med-card {
     background: #f7f7f5;
-    border-radius: 7px;
-    padding: 6px 10px;
-    margin-bottom: 5px;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 7px;
   }
 
   .med-name {
-    font-size: 12px;
+    font-size: 13.5px;
     font-weight: 500;
     color: #1a1a1a;
     margin-bottom: 1px;
   }
 
   .med-detail {
-    font-size: 11px;
+    font-size: 12.5px;
     color: #555;
-    line-height: 1.4;
+    line-height: 1.45;
   }
 
   .after-callout {
-    margin: 8px 0;
+    margin: 10px 0;
     border-left: 2px solid #4a90d9;
-    padding: 6px 9px;
+    padding: 8px 11px;
     background: #eef4fb;
   }
 
   .after-callout p {
-    font-size: 11.5px;
+    font-size: 13px;
     line-height: 1.5;
     color: #1a1a1a;
   }
 
   .after-warning {
-    margin: 8px 0;
+    margin: 10px 0;
     border-left: 2px solid #e07b3a;
-    padding: 6px 9px;
+    padding: 8px 11px;
     background: #fdf3ec;
   }
 
   .after-warning-label {
-    font-size: 10.5px;
+    font-size: 11.5px;
     font-weight: 500;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #e07b3a;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
   }
 
   .after-warning ul {
-    padding-left: 15px;
+    padding-left: 17px;
     margin: 0;
   }
 
   .after-warning li {
-    font-size: 11.5px;
+    font-size: 13px;
     line-height: 1.55;
     color: #1a1a1a;
   }
 
   .after-warning-footer {
-    font-size: 11.5px;
+    font-size: 13px;
     color: #1a1a1a;
-    margin-top: 5px;
+    margin-top: 6px;
     font-weight: 500;
   }
 
   .after-link-block {
-    padding: 7px 10px;
+    padding: 8px 12px;
     border: 1px solid #ddd;
-    border-radius: 7px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     text-decoration: none;
     background: #fff;
-    margin-top: 8px;
+    margin-top: 9px;
   }
 
   .after-link-text {
-    font-size: 11.5px;
+    font-size: 13px;
     color: #1a1a1a;
     font-weight: 500;
     margin-bottom: 1px;
   }
 
   .after-link-sub {
-    font-size: 10.5px;
+    font-size: 11.5px;
     color: #aaa;
   }
 
   .after-link-arrow {
     color: #aaa;
-    font-size: 13px;
+    font-size: 14px;
   }
 
-  .after-footer-note {
-    margin-top: 8px;
-    padding-top: 8px;
+  .scroll-cue {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #bbb;
+  }
+
+  .scroll-cue-arrow {
+    animation: bob 1.6s ease-in-out infinite;
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+  }
+
+  /* ---------- SECOND SCREEN: omissions, roomy, normal flow ---------- */
+  .omission-section {
+    padding: 64px 56px 80px;
     border-top: 1px solid #e8e8e8;
-    font-size: 10.5px;
-    color: #aaa;
-    line-height: 1.5;
+    background: #fbfbfa;
+  }
+
+  .omission-intro {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #555;
+    max-width: 700px;
+    margin-bottom: 28px;
+  }
+
+  .omission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 980px;
+  }
+
+  .omission-card {
+    padding: 18px 22px;
+    border-radius: 10px;
+    border: 1px solid #e8e8e8;
+    background: #ffffff;
+  }
+
+  .omission-item {
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+    margin-bottom: 6px;
+    text-decoration: line-through;
+    text-decoration-color: #ccc;
+  }
+
+  .omission-reason {
+    font-size: 13.5px;
+    color: #555;
+    line-height: 1.6;
   }
 </style>
 </head>
 <body>
 
-<div class="page">
+<div class="hero">
   <p class="scroll-section-label">A worked example</p>
   <p class="comparison-intro">A patient with a pre-existing respiratory condition, worsening breathing, travelling to the Caribbean on Sunday. They came in scared their holiday was going to be ruined.</p>
 
@@ -225,27 +299,36 @@
       <p class="col-label">Clinical note</p>
       <div class="note-block">
         <p class="note-section-head">History</p>
-        <p class="note-text">Face to face follow-up for worsening breathing. Pre-existing condition prone to causing breathing issues. Plans to travel to the Caribbean on Sunday. Concerned about enjoying the holiday. Exercises regularly but currently finds any exercise tiring. No red flag symptoms.</p>
-      </div>
-      <div class="note-block">
-        <p class="note-section-head">Medications</p>
-        <p class="note-text">Foster inhaler, carbocisteine.</p>
+        <ul class="note-list">
+          <li>Face to face, seen alone, for a follow-up due to worsening breathing.</li>
+          <li>Reports worsening breathing, describing being prone to it due to a pre-existing illness. Intends to travel to the Caribbean, including Saint Lucia, Saint Kitts, Barbados, and the Dominican Republic.</li>
+          <li>Concerned about being able to enjoy the holiday due to current symptoms.</li>
+          <li>No mention of red flag symptoms.</li>
+          <li>Exercises regularly to manage symptoms but currently finds any exercise tiring.</li>
+          <li><strong>PMH:</strong> existing condition prone to causing breathing issues.</li>
+          <li><strong>DH:</strong> current medications include inhalers (Foster) and carbocisteine.</li>
+          <li><strong>SH:</strong> plans to travel across the Atlantic to the Caribbean.</li>
+        </ul>
       </div>
       <div class="note-block">
         <p class="note-section-head">Examination</p>
-        <p class="note-text">Mild wheeze and a few crackles noted.</p>
+        <p class="note-text">Mild wheeze and a few crackles noted on examination.</p>
       </div>
       <div class="note-block">
         <p class="note-section-head">Diagnosis</p>
-        <p class="note-text">Worsening breathing.</p>
+        <p class="note-text">1. Worsening breathing.</p>
       </div>
       <div class="note-block">
         <p class="note-section-head">Plan</p>
-        <p class="note-text">Antibiotics twice daily for seven days. Oral steroids once daily for five days. Take with food. Alongside existing medications.</p>
+        <ul class="note-list">
+          <li><strong>Treatment planned:</strong> prescribe antibiotics (twice a day for seven days) and a short course of oral steroids (once a day for five days).</li>
+          <li><strong>Advice given:</strong> take antibiotics with breakfast and tea time, and steroids with breakfast, ideally with food. Can be taken alongside other medications.</li>
+          <li><strong>Follow up plan:</strong> if not feeling better by their travel date on Sunday, book an appointment for the following Thursday or Friday to see the practitioner again.</li>
+        </ul>
       </div>
       <div class="note-block">
-        <p class="note-section-head">Safety netting</p>
-        <p class="note-text">If not better by Sunday, book Thursday or Friday. If symptoms worsen, return.</p>
+        <p class="note-section-head">Safety netting advice</p>
+        <p class="note-text">If symptoms do not improve or worsen, advised to see the practitioner again.</p>
       </div>
     </div>
 
@@ -287,26 +370,46 @@
         </div>
         <span class="after-link-arrow">→</span>
       </a>
-      <div class="after-footer-note">From your GP at Weymouth &amp; Portland PCN. Questions? Contact the surgery.</div>
     </div>
 
   </div>
+
+  <div class="scroll-cue">
+    <span>Scroll for what was left out, and why</span>
+    <span class="scroll-cue-arrow">↓</span>
+  </div>
 </div>
 
-<script>
-  function fitToViewport() {
-    var page = document.querySelector('.page');
-    var scale = Math.min(
-      window.innerWidth / 1240,
-      window.innerHeight / 860,
-      1 // never scale up beyond 100%, only down to fit smaller screens
-    );
-    page.style.transform = 'translate(-50%, -50%) scale(' + scale + ')';
-  }
-  window.addEventListener('resize', fitToViewport);
-  window.addEventListener('load', fitToViewport);
-  fitToViewport();
-</script>
+<div class="omission-section">
+  <p class="scroll-section-label">What was left out, and why</p>
+  <p class="omission-intro">This is one example from hundreds. We took anonymised clinical notes and argued — the four of us, nurse, psychologist, social worker, philosopher — over what stays and what gets cut. From the common ground in those decisions, we built a rule set: the Lens. Every omission below reflects that rule set, not a one-off judgement call.</p>
+  <div class="omission-grid">
+    <div class="omission-card">
+      <p class="omission-item">Mild wheeze and crackles</p>
+      <p class="omission-reason">Examination findings. Written for the clinical record. The patient can't act on this and it would worry them without purpose.</p>
+    </div>
+    <div class="omission-card">
+      <p class="omission-item">Diagnosis: worsening breathing</p>
+      <p class="omission-reason">They already know their breathing is worse. Labelling it adds nothing. The After Note addresses the situation, not the classification.</p>
+    </div>
+    <div class="omission-card">
+      <p class="omission-item">Pre-existing condition detail</p>
+      <p class="omission-reason">They've lived with this condition. They don't need it explained back to them at the end of a consultation.</p>
+    </div>
+    <div class="omission-card">
+      <p class="omission-item">Exercise currently tiring</p>
+      <p class="omission-reason">They told the GP this themselves. Reflecting it back is noise. The medication addresses it — the After Note focuses on the medication.</p>
+    </div>
+    <div class="omission-card">
+      <p class="omission-item">Specific Caribbean destinations</p>
+      <p class="omission-reason">Saint Lucia, Saint Kitts, Barbados, the Dominican Republic — clinically irrelevant detail. What matters to the patient is the single decision point: Sunday.</p>
+    </div>
+    <div class="omission-card">
+      <p class="omission-item">"Seen alone" and consultation framing</p>
+      <p class="omission-reason">Administrative and record-keeping context. It has no bearing on what the patient needs to do next.</p>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
