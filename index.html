@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Worked Example — After Note</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -14,6 +14,7 @@
     background: #ffffff;
     color: #1a1a1a;
     line-height: 1.5;
+    padding-bottom: 70px; /* Space for fixed dispatch bar */
   }
 
   /* ---------- FIRST SCREEN: comparison, fits one viewport ---------- */
@@ -285,6 +286,113 @@
     color: #555;
     line-height: 1.6;
   }
+
+  /* ---------- DISPATCH BAR (CLINICIAN INTERFACE) ---------- */
+  .gp-dispatch-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #0f172a;
+    color: #ffffff;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+    border-top: 1px solid #334155;
+  }
+
+  .dispatch-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .accuro-badge {
+    background: #0284c7;
+    color: #ffffff;
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .lexacom-badge {
+    background: #475569;
+    color: #ffffff;
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .dispatch-options {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 13px;
+  }
+
+  .dispatch-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    background: #1e293b;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #475569;
+    transition: all 0.2s ease;
+  }
+
+  .dispatch-checkbox-label:hover {
+    border-color: #38bdf8;
+  }
+
+  .dispatch-checkbox-label input[type="checkbox"] {
+    accent-color: #0284c7;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+  }
+
+  .btn-dispatch {
+    background: #22c55e;
+    color: #ffffff;
+    border: none;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s ease;
+  }
+
+  .btn-dispatch:hover {
+    background: #16a34a;
+  }
+
+  @media (max-width: 768px) {
+    .gp-dispatch-bar {
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px 16px;
+    }
+    .dispatch-options {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
 </style>
 </head>
 <body>
@@ -296,7 +404,7 @@
   <div class="comparison-grid">
 
     <div>
-      <p class="col-label">Clinical note</p>
+      <p class="col-label">Clinical note (Accuro / Lexacom Output)</p>
       <div class="note-block">
         <p class="note-section-head">History</p>
         <ul class="note-list">
@@ -333,7 +441,7 @@
     </div>
 
     <div>
-      <p class="col-label">After Note</p>
+      <p class="col-label">After Note (Patient Stream via CoLab Lens)</p>
       <h2 class="after-title">Your breathing and what to do before Sunday</h2>
       <p class="after-intro">You have been prescribed a short course of antibiotics and steroids to help improve your breathing over the next few days.</p>
       <p class="after-section-label">What to take</p>
@@ -398,7 +506,7 @@
     </div>
     <div class="omission-card">
       <p class="omission-item">Exercise currently tiring</p>
-      <p class="omission-reason">They told the GP this themselves. Reflecting it back is noise. The medication addresses it — the After Note focuses on the medication.</p>
+      <p class="omission-reason">They told the GP this themselves. Reflecting it back is noise. The Medication addresses it — the After Note focuses on the medication.</p>
     </div>
     <div class="omission-card">
       <p class="omission-item">Specific Caribbean destinations</p>
@@ -408,6 +516,25 @@
       <p class="omission-item">"Seen alone" and consultation framing</p>
       <p class="omission-reason">Administrative and record-keeping context. It has no bearing on what the patient needs to do next.</p>
     </div>
+  </div>
+</div>
+
+<!-- ---------- GP DISPATCH BAR (Interactive Interface Overlay) ---------- -->
+<div class="gp-dispatch-bar">
+  <div class="dispatch-info">
+    <span class="accuro-badge">Accuro Assistant Engine</span>
+    <span class="lexacom-badge">Lexacom Workflow</span>
+    <span style="font-size: 12.5px; color: #cbd5e1;">Consultation Complete • 1-Click Verification</span>
+  </div>
+  <div class="dispatch-options">
+    <label class="dispatch-checkbox-label">
+      <input type="checkbox" checked id="afternoteCheck">
+      <span>Send <strong>Afternote</strong> to patient's phone (via AccuRx / Comms Annex)</span>
+    </label>
+    <button class="btn-dispatch" onclick="alert('Record saved to Clinical System & Afternote dispatched to patient phone via SMS!')">
+      <span>Save & Dispatch</span>
+      <span>✓</span>
+    </button>
   </div>
 </div>
 
