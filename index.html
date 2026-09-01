@@ -14,10 +14,10 @@
     background: #ffffff;
     color: #1a1a1a;
     line-height: 1.5;
-    padding-bottom: 70px; /* Space for fixed dispatch bar */
+    padding-bottom: 90px; /* Space for fixed dispatch bar */
   }
 
-  /* ---------- FIRST SCREEN: comparison, fits one viewport ---------- */
+  /* ---------- FIRST SCREEN: comparison ---------- */
   .hero {
     min-height: 100vh;
     padding: 40px 56px 32px;
@@ -243,7 +243,7 @@
     50% { transform: translateY(4px); }
   }
 
-  /* ---------- SECOND SCREEN: omissions, roomy, normal flow ---------- */
+  /* ---------- SECOND SCREEN: omissions ---------- */
   .omission-section {
     padding: 64px 56px 80px;
     border-top: 1px solid #e8e8e8;
@@ -287,7 +287,7 @@
     line-height: 1.6;
   }
 
-  /* ---------- DISPATCH BAR (CLINICIAN INTERFACE) ---------- */
+  /* ---------- DISPATCH MOMENT (GP INTERFACE) ---------- */
   .gp-dispatch-bar {
     position: fixed;
     bottom: 0;
@@ -295,11 +295,11 @@
     right: 0;
     background: #0f172a;
     color: #ffffff;
-    padding: 12px 24px;
+    padding: 14px 28px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.2);
     z-index: 9999;
     border-top: 1px solid #334155;
   }
@@ -307,7 +307,7 @@
   .dispatch-info {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
   }
 
   .accuro-badge {
@@ -332,31 +332,38 @@
     text-transform: uppercase;
   }
 
-  .dispatch-options {
+  .dispatch-actions-grid {
     display: flex;
     align-items: center;
-    gap: 20px;
-    font-size: 13px;
+    gap: 12px;
   }
 
-  .dispatch-checkbox-label {
+  .dispatch-option {
     display: flex;
     align-items: center;
     gap: 8px;
-    cursor: pointer;
     background: #1e293b;
-    padding: 6px 12px;
+    padding: 8px 14px;
     border-radius: 6px;
-    border: 1px solid #475569;
+    border: 1px solid #334155;
+    font-size: 12px;
+    color: #cbd5e1;
+    cursor: pointer;
     transition: all 0.2s ease;
   }
 
-  .dispatch-checkbox-label:hover {
-    border-color: #38bdf8;
+  .dispatch-option:hover {
+    border-color: #64748b;
   }
 
-  .dispatch-checkbox-label input[type="checkbox"] {
-    accent-color: #0284c7;
+  .dispatch-option.highlight {
+    background: #0369a1;
+    border-color: #38bdf8;
+    color: #ffffff;
+  }
+
+  .dispatch-option input[type="checkbox"] {
+    accent-color: #38bdf8;
     width: 15px;
     height: 15px;
     cursor: pointer;
@@ -366,7 +373,7 @@
     background: #22c55e;
     color: #ffffff;
     border: none;
-    padding: 8px 18px;
+    padding: 10px 20px;
     font-size: 13px;
     font-weight: 600;
     border-radius: 6px;
@@ -375,22 +382,23 @@
     align-items: center;
     gap: 6px;
     transition: background 0.2s ease;
+    margin-left: 8px;
   }
 
   .btn-dispatch:hover {
     background: #16a34a;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .gp-dispatch-bar {
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       align-items: flex-start;
       padding: 12px 16px;
     }
-    .dispatch-options {
+    .dispatch-actions-grid {
       width: 100%;
-      justify-content: space-between;
+      flex-wrap: wrap;
     }
   }
 </style>
@@ -519,20 +527,37 @@
   </div>
 </div>
 
-<!-- ---------- GP DISPATCH BAR (Interactive Interface Overlay) ---------- -->
+<!-- ---------- GP DISPATCH MOMENT BAR ---------- -->
 <div class="gp-dispatch-bar">
   <div class="dispatch-info">
-    <span class="accuro-badge">Accuro Assistant Engine</span>
-    <span class="lexacom-badge">Lexacom Workflow</span>
-    <span style="font-size: 12.5px; color: #cbd5e1;">Consultation Complete • 1-Click Verification</span>
+    <span class="accuro-badge">Accuro</span>
+    <span class="lexacom-badge">Lexacom</span>
+    <span style="font-size: 12px; color: #cbd5e1; font-weight: 500;">End of Consultation — Dispatch Actions</span>
   </div>
-  <div class="dispatch-options">
-    <label class="dispatch-checkbox-label">
-      <input type="checkbox" checked id="afternoteCheck">
-      <span>Send <strong>Afternote</strong> to patient's phone (via AccuRx / Comms Annex)</span>
+
+  <div class="dispatch-actions-grid">
+    <label class="dispatch-option">
+      <input type="checkbox">
+      <span>Send Referral</span>
     </label>
-    <button class="btn-dispatch" onclick="alert('Record saved to Clinical System & Afternote dispatched to patient phone via SMS!')">
-      <span>Save & Dispatch</span>
+
+    <label class="dispatch-option">
+      <input type="checkbox" checked>
+      <span>Send Prescription</span>
+    </label>
+
+    <label class="dispatch-option">
+      <input type="checkbox">
+      <span>Send Letter to Patient</span>
+    </label>
+
+    <label class="dispatch-option highlight">
+      <input type="checkbox" checked>
+      <span>Send <strong>Afternote</strong> to Patient's Phone</span>
+    </label>
+
+    <button class="btn-dispatch" onclick="alert('Dispatched: Prescription sent to Pharmacy + Afternote sent to Patient Phone via SMS!')">
+      <span>Complete & Dispatch</span>
       <span>✓</span>
     </button>
   </div>
